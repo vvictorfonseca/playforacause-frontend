@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar"
+import Header from "@/components/Header"
 
 import { ReactNode } from "react"
 
@@ -11,7 +11,7 @@ export default function MainContainer({ children }: IMaincontainer) {
   return (
     <>
       <div>
-        <Navbar />
+        <Header />
         <div className="flex justify-center items-center ">
           {children}
         </div>

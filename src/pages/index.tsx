@@ -1,15 +1,13 @@
-import Head from "next/head"
-
 import axios from "axios"
 import { dehydrate, QueryClient, useQuery } from "react-query"
 
-import ProductBox from "@/components/ProducstBox"
-
+import Head from "next/head"
+import { GetStaticProps } from "next"
 import { IProduct } from "@/interfaces/productsInterface"
 
-//const getProducts = async () => await(await fetch('http://localhost:4000/products')).json()
+import Product from "@/components/Producst"
 
-const getProducts = async () => {
+export const getProducts = async () => {
 
   try {
     const res = await axios.get("http://localhost:4000/products")
@@ -17,16 +15,13 @@ const getProducts = async () => {
     return res.data
   
   } catch (error) {
-    console.log("deu ruim")
+    alert(error)
   }
 
 }
 
-export default function Home() {
+function Home() {
   const { data, isLoading, isFetching } = useQuery<IProduct[]>('products', getProducts)
-  console.log(data)
-  
-  if(isLoading) return <p>...Loading</p>
   
   return (
     <>
@@ -34,19 +29,33 @@ export default function Home() {
         <title>E-commerce</title>
       </Head>
 
-      <div className=" w-[90%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap">
+      <main className=" w-[90%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap">
         
         {
           data ? (
             data.map((product, index) => {
-              return (<ProductBox key={index} {...product} />)
+              return (<Product key={index} {...product} />)
             })
           ) : (
-            <p>...lOADING</p>
+            <h1 className=" font-bold text-2xl">No products</h1>
           )
         }
 
-      </div>
+      </main>
     </>
   )
+}
+
+export default Home
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery<IProduct[]>('products', getProducts)
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient)
+    }
+  }
 }
