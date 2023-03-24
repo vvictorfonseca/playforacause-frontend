@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
+
+html,
+body {
+  @apply h-screen;
+}
+
+body {
+  background-color: #F5F5F5;
+}
+
+#__next {
+  @apply h-screen flex flex-col
+}
+
