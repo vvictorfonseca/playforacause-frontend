@@ -12,3 +12,18 @@ export interface IAddToCartBody {
   tokenStorage: string | null | undefined;
   router: any
 }
+
+export interface ICart {
+  id: number;
+  userId: number;
+  productId: number;
+  units: number;
+  products: {
+    name: string
+    price: number;
+    description: string;
+    image: string;
+    size: string;
+    units: number;
+  }
+}

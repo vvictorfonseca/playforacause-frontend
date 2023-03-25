@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import axios from "axios";
+
+import UserContext, { IUserContext } from "@/contexts/userContext";
 
 import { IAddToCart, IAddToCartBody } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
@@ -83,6 +86,31 @@ export async function addToCart({ tokenStorage, addToCartBody, router }: IAddToC
     alert("Produto adicionado ao carrinho")
     
     router.push("/")
+  
+  } catch (error: any) {
+    alert(error.response.data)
+  }
+}
+
+export async function getUserCart() {
+  const tokenString = localStorage.getItem('token');
+  const token = tokenString !== null ? JSON.parse(tokenString) : null
+
+  if(!token) {
+    return
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const URL = "http://localhost:4000/cart"
+
+  try {
+    const response = await axios.get(URL, config)
+    return response.data
   
   } catch (error: any) {
     alert(error.response.data)
