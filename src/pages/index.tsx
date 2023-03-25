@@ -1,24 +1,12 @@
-import axios from "axios"
-import { dehydrate, QueryClient, useQuery } from "react-query"
-
 import Head from "next/head"
 import { GetStaticProps } from "next"
+import { dehydrate, QueryClient, useQuery } from "react-query"
+
+import { getProducts } from "@/services/api"
+
 import { IProduct } from "@/interfaces/productsInterface"
 
 import Product from "@/components/Product"
-
-export const getProducts = async () => {
-
-  try {
-    const res = await axios.get("http://localhost:4000/products")
-
-    return res.data
-  
-  } catch (error) {
-    alert(error)
-  }
-
-}
 
 export default function Home() {
   const { data } = useQuery<IProduct[]>('products', getProducts)

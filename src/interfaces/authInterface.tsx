@@ -9,3 +9,20 @@ export interface ILogin {
   email: string;
   password: string;
 }
+
+export interface ILoginProps {
+  data: ILogin;
+  userInfos: IUserInfo;
+  setUserInfos: (newState: IUserInfo) => void;
+  router: any
+}
+
+export interface IUserInfo {
+  id: number | string | null | undefined;
+  firstName: string | null | undefined;
+  token: string | null | undefined;
+}
+
+export interface Iuser {
+  userInfos: IUserInfo
+}

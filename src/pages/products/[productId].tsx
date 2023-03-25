@@ -6,7 +6,7 @@ import { GetStaticProps, GetStaticPaths } from "next"
 import { IProduct } from "@/interfaces/productsInterface"
 import { IAddToCart } from "@/interfaces/cartsInterface"
 
-import { getProducts } from ".."
+import { getProducts } from "@/services/api"
 
 import IncrementUnit from "@/components/IncrementUnit"
 import AddToCartButton from "@/components/AddToCartButton"
