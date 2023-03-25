@@ -5,13 +5,13 @@ export default function Header() {
     <nav>
       <ul className=" bg-[#3c3c3c] flex items-center justify-between gap-3 h-28 font-medium text-xl text-slate-50">
 
-        <li className=" ml-10 hover:text-slate-200 transition">
+        <li className=" ml-20 hover:text-slate-200 transition">
           <Link href="/" legacyBehavior>
             <a>Home</a>
           </Link>
         </li>
 
-        <div className="flex gap-3 justify-end mr-10">
+        <div className="flex gap-3 justify-end mr-20">
           <li className="hover:text-slate-200 transition">
             <Link href="/cart" legacyBehavior>
               <a>Carrinho</a>

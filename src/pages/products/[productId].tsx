@@ -49,7 +49,7 @@ export default function Product({ params }: IProductProps) {
           <h2 className=" text-3xl font-semibold">{data.name}</h2>
           <h4>{data.description}</h4>
 
-          <p className=" mt-10 font-bold text-[#FF5A5F]">{data?.units} unidades no estoque</p>
+          <p className=" mt-10 font-bold text-[#FF5A5F]">{data.units} unidades no estoque</p>
         </section>
         <article className=" flex flex-col justify-around h-[33.5%] p-5 border-b-2 border-gray-300">
           <div>

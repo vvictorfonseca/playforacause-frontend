@@ -1,5 +1,5 @@
-import { Router, useRouter } from "next/router"
-import { IAddToCart, IAddToCartProps, IAddToCartBody } from "@/interfaces/cartsInterface"
+import { useRouter } from "next/router"
+import { IAddToCartProps, IAddToCartBody } from "@/interfaces/cartsInterface"
 
 import { addToCart } from "@/services/api"
 
