@@ -5,7 +5,7 @@ import Head from "next/head"
 import { GetStaticProps } from "next"
 import { IProduct } from "@/interfaces/productsInterface"
 
-import Product from "@/components/Producst"
+import Product from "@/components/Product"
 
 export const getProducts = async () => {
 
@@ -20,8 +20,8 @@ export const getProducts = async () => {
 
 }
 
-function Home() {
-  const { data, isLoading, isFetching } = useQuery<IProduct[]>('products', getProducts)
+export default function Home() {
+  const { data } = useQuery<IProduct[]>('products', getProducts)
   
   return (
     <>
@@ -45,8 +45,6 @@ function Home() {
     </>
   )
 }
-
-export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient()
