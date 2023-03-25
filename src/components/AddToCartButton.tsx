@@ -1,20 +1,23 @@
 import { useRouter } from "next/router"
 import { IAddToCartProps, IAddToCartBody } from "@/interfaces/cartsInterface"
 
+import { useContext } from "react"
+import UserContext, { IUserContext } from "@/contexts/userContext"
+
 import { addToCart } from "@/services/api"
 
 export default function AddToCartButton(props: IAddToCartProps) {
+  const { userInfos } = useContext<IUserContext>(UserContext)
   const router = useRouter()
 
-  const tokenStorage = localStorage.getItem('token')
-
   const body: IAddToCartBody = {
-    tokenStorage: tokenStorage,
-    addToCartBody: props.addToCartBody
+    tokenStorage: userInfos.token,
+    addToCartBody: props.addToCartBody,
+    router: router
   }
 
   function verifyUserIsLogged() {
-    if (!tokenStorage) {
+    if (!userInfos.token) {
       alert("Precisa estar logado para adicionar ao carrinho")
       router.push("/auth")
     } else {

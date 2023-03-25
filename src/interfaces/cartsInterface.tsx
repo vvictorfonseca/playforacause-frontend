@@ -9,5 +9,6 @@ export interface IAddToCartProps {
 
 export interface IAddToCartBody {
   addToCartBody: IAddToCart;
-  tokenStorage: string | null;
+  tokenStorage: string | null | undefined;
+  router: any
 }

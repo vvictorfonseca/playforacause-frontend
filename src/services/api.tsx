@@ -1,11 +1,19 @@
 import axios from "axios";
 
-import { IAddToCartBody } from "@/interfaces/cartsInterface";
+import { IAddToCart, IAddToCartBody } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
 
+export async function getProducts() {
 
-export function addToCart({ tokenStorage, addToCartBody }: IAddToCartBody) {
-  console.log(tokenStorage, addToCartBody )
+  const URL = "http://localhost:4000/products"
+
+  try {
+    const res = await axios.get(URL)
+    return res.data
+  
+  } catch (error) {
+    alert(error)
+  }
 }
 
 export async function signUp(props: ISignUp) {
@@ -55,15 +63,28 @@ export async function login(props: ILoginProps) {
   } 
 }
 
-export async function getProducts() {
+export async function addToCart({ tokenStorage, addToCartBody, router }: IAddToCartBody) {
+  
+  const body: IAddToCart = {
+    productId: addToCartBody.productId,
+    units: addToCartBody.units
+  }
 
-  const URL = "http://localhost:4000/products"
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`
+    }
+  }
+
+  const URL = "http://localhost:4000/cart"
 
   try {
-    const res = await axios.get(URL)
-    return res.data
+    await axios.post(URL, body, config)
+    alert("Produto adicionado ao carrinho")
+    
+    router.push("/")
   
-  } catch (error) {
-    alert(error)
+  } catch (error: any) {
+    alert(error.response.data)
   }
 }
