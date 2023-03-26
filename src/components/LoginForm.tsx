@@ -1,9 +1,8 @@
 import React from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-
 import { useRouter } from "next/router";
 
-import { useContext } from "react";
 import UserContext, { IUserContext } from "@/contexts/userContext";
 
 import { login } from "@/services/api";
@@ -17,7 +16,7 @@ export default function LoginForm() {
     }
   })
   const router = useRouter()
-  const { userInfos, setUserInfos } = useContext<IUserContext>(UserContext)
+  const { userInfos, setUserInfos, } = useContext<IUserContext>(UserContext)
 
   return (
     <div className=" w-[100%] h-[100%] flex flex-col items-center p-5 ">

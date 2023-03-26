@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import axios from "axios";
 
-import UserContext, { IUserContext } from "@/contexts/userContext";
-
-import { IAddToCart, IAddToCartBody } from "@/interfaces/cartsInterface";
+import { IAddToCart, IAddToCartBody, IAddUnitToCart, IDeleteproductOnCart, IUpdateUnitToCart } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
 
 export async function getProducts() {
@@ -59,6 +56,12 @@ export async function login(props: ILoginProps) {
     localStorage.setItem('userId', userId)
     localStorage.setItem('firstName', firstName)
 
+    props.setUserInfos({
+      id: data.id,
+      firstName: data.firstName,
+      token: data.token
+    })
+
     props.router.push("/")
   
   } catch (error: any) {
@@ -66,7 +69,7 @@ export async function login(props: ILoginProps) {
   } 
 }
 
-export async function addToCart({ tokenStorage, addToCartBody, router }: IAddToCartBody) {
+export async function addToCart({ tokenStorage, addToCartBody, router, queryClient }: IAddToCartBody) {
   
   const body: IAddToCart = {
     productId: addToCartBody.productId,
@@ -84,9 +87,48 @@ export async function addToCart({ tokenStorage, addToCartBody, router }: IAddToC
   try {
     await axios.post(URL, body, config)
     alert("Produto adicionado ao carrinho")
+    queryClient
     
-    router.push("/")
+    router.push("/cart")
   
+  } catch (error: any) {
+    alert(error.response.data)
+  }
+}
+
+export async function incrementUnitToCart({ cartId, tokenStorage, queryClient}: IUpdateUnitToCart) {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`
+    }
+  }
+
+  const URL = `http://localhost:4000/cart/increment/${cartId}`
+
+  try {
+    await axios.put(URL, {}, config)
+    queryClient()
+    
+  } catch (error: any) {
+    alert(error.response.data)
+  }
+}
+
+export async function decrementUnitToCart({ cartId, tokenStorage, queryClient}: IUpdateUnitToCart) {
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`
+    }
+  }
+
+  const URL = `http://localhost:4000/cart/decrement/${cartId}`
+
+  try {
+    await axios.put(URL, {}, config)
+    queryClient()
+
   } catch (error: any) {
     alert(error.response.data)
   }
@@ -111,6 +153,28 @@ export async function getUserCart() {
   try {
     const response = await axios.get(URL, config)
     return response.data
+  
+  } catch (error: any) {
+    alert(error.response.data)
+  }
+}
+
+export async function deleteProductOnCart(props: IDeleteproductOnCart) {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${props.token}`
+    }
+  }
+  
+  const URL = `http://localhost:4000/cart/${props.cartId}`
+
+  console.log("onclick", props.onClick)
+  console.log("productId", props.cartId)
+
+  try {
+    await axios.delete(URL, config)
+    props.onClick()
   
   } catch (error: any) {
     alert(error.response.data)

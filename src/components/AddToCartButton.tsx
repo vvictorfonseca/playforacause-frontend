@@ -1,19 +1,24 @@
 import { useRouter } from "next/router"
-import { IAddToCartProps, IAddToCartBody } from "@/interfaces/cartsInterface"
+import { IAddToCartProps, IAddToCartBody, IAddToCartButtonProps } from "@/interfaces/cartsInterface"
 
 import { useContext } from "react"
 import UserContext, { IUserContext } from "@/contexts/userContext"
 
 import { addToCart } from "@/services/api"
 
-export default function AddToCartButton(props: IAddToCartProps) {
+interface IProps {
+  infos: IAddToCartButtonProps
+}
+
+export default function AddToCartButton({ infos }: IProps) {
   const { userInfos } = useContext<IUserContext>(UserContext)
   const router = useRouter()
 
   const body: IAddToCartBody = {
     tokenStorage: userInfos.token,
-    addToCartBody: props.addToCartBody,
-    router: router
+    addToCartBody: {productId: infos.productId, units: infos.units},
+    router: router,
+    queryClient: infos.queryClient
   }
 
   function verifyUserIsLogged() {

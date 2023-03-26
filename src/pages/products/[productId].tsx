@@ -1,10 +1,10 @@
 import { useState } from "react"
 import axios from "axios"
-import { dehydrate, QueryClient, useQuery } from "react-query"
+import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
 
 import { GetStaticProps, GetStaticPaths } from "next"
 import { IProduct } from "@/interfaces/productsInterface"
-import { IAddToCart } from "@/interfaces/cartsInterface"
+import { IAddToCart, IAddToCartButtonProps } from "@/interfaces/cartsInterface"
 
 import { getProducts } from "@/services/api"
 
@@ -19,6 +19,7 @@ interface IProductProps {
 
 export default function Product({ params }: IProductProps) {
   const [unit, setUnit] = useState<number>(1)
+  const queryClient = useQueryClient()
 
   const { data, isLoading } = useQuery<IProduct>('product', async () => {
 
@@ -34,9 +35,10 @@ export default function Product({ params }: IProductProps) {
   if(!data) return <p>No data</p>
   if(isLoading) return <p>Loading</p>
 
-  let addToCartBody: IAddToCart = {
+  let addToCartBody: IAddToCartButtonProps = {
     units: unit,
-    productId: data.id
+    productId: data.id,
+    queryClient: queryClient
   }
 
   return (
@@ -62,9 +64,9 @@ export default function Product({ params }: IProductProps) {
         </article>
         <div className=" flex flex-col justify-center gap-6 items-center h-[33%] w-[100%]">
           
-          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units}  />
+          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0}  />
 
-          <AddToCartButton addToCartBody={addToCartBody} />
+          <AddToCartButton infos={addToCartBody} />
         
         </div>
       </div>
