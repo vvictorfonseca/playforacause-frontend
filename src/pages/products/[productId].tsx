@@ -49,7 +49,7 @@ export default function Product({ params }: IProductProps) {
       <div className=" flex flex-col h-[100%] w-[60%]">
         <section className=" h-[33.5%] w-[100%] p-3 border-b-2 border-gray-300 ">
           <h2 className=" text-3xl font-semibold">{data.name}</h2>
-          <h4>{data.description}</h4>
+          <h4 className=" text-sm">{data.description}</h4>
 
           <p className=" mt-10 font-bold text-[#FF5A5F]">{data.units} unidades no estoque</p>
         </section>
@@ -64,7 +64,7 @@ export default function Product({ params }: IProductProps) {
         </article>
         <div className=" flex flex-col justify-center gap-6 items-center h-[33%] w-[100%]">
           
-          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0}  />
+          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0} isOpen={""} setIsOpen={() => null}  />
 
           <AddToCartButton infos={addToCartBody} />
         

@@ -7,6 +7,8 @@ import { ICart } from "@/interfaces/cartsInterface"
 import { getUserCart } from "@/services/api"
 
 import CartProduct from "@/components/CartProduct"
+import SubTotalCart from "@/components/SubTotalCart"
+import NodataCart from "@/components/NodataCart"
 
 export default function Cart() {
   const queryClient = useQueryClient()
@@ -19,28 +21,30 @@ export default function Cart() {
 
   const { data } = useQuery<ICart[]>('carts', getUserCart)
 
-  if (!data) return <p>No data!</p>
+  if (!data) return (
+    <NodataCart content={"Precisa estar logado para acessar seu carrinho!"} />
+  )
 
   console.log("AllCartDara", data)
   return (
-    <main className=" w-[90%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap">
+    <main className=" w-[100%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap ">
 
       {
         data.length == 0 ? (
-          <div className=" w-[100%] h-[60vh] flex flex-col justify-center items-center gap-6">
-            <h1 className=" text-2xl font-bold">Seu carrinho está vazio!</h1>
-            <button onClick={() => router.push("/")} className=" text-white bg-[#FF5A5F] p-3 rounded">Voltar para produtos</button>
-          </div>
+          
+          <NodataCart content="Seu carrinho está vazio!" />
 
         ) : (
 
-          data.map((product, index) => {
-            return (<CartProduct key={index} onClick={invalidQuerie} product={product} />)
-
-          })
-
-        )
-      }
+          <>
+            {data.map((product, index) => {
+              return (<CartProduct key={index} onClick={invalidQuerie} product={product} />)
+            })}
+            <>
+              <SubTotalCart cart={data} />
+            </>
+          </>
+        )}
 
     </main>
   )

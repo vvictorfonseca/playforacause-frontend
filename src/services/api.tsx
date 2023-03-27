@@ -3,6 +3,13 @@ import axios from "axios";
 import { IAddToCart, IAddToCartBody, IAddUnitToCart, IDeleteproductOnCart, IUpdateUnitToCart } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
 
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
+
 export async function getProducts() {
 
   const URL = "http://localhost:4000/products"
@@ -86,7 +93,6 @@ export async function addToCart({ tokenStorage, addToCartBody, router, queryClie
 
   try {
     await axios.post(URL, body, config)
-    alert("Produto adicionado ao carrinho")
     queryClient
     
     router.push("/cart")

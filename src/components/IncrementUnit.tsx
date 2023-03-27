@@ -13,6 +13,8 @@ interface IProps {
   productId: number;
   cartId: number;
   isCart: boolean;
+  isOpen: boolean | string;
+  setIsOpen: (newState: boolean) => void | any
 }
 
 export default function IncrementUnit(infos: IProps) {
@@ -38,7 +40,7 @@ export default function IncrementUnit(infos: IProps) {
   }
 
   return (
-    <div className=" flex justify-between items-center w-32 h-9 rounded-md bg-slate-200 border-2 border-gray-200 ">
+    <div className=" flex justify-between items-center w-32 h-9 rounded-md bg-slate-200 border-[1px] border-gray-200 ">
 
       <button
         onClick={() => {
@@ -46,7 +48,7 @@ export default function IncrementUnit(infos: IProps) {
 
             if (infos.unit > 0) {
 
-              decrementUnitToCart(updateCartBody)
+              infos.unit == 1 ? infos.setIsOpen(true) : decrementUnitToCart(updateCartBody)
 
             } else {
 
@@ -59,7 +61,7 @@ export default function IncrementUnit(infos: IProps) {
           }
 
         }}
-        className=" w-[33.3%] h-[100%] bg-slate-300 rounded-md border-r-2 border-gray-200">
+        className=" w-[33.3%] h-[100%] bg-slate-300 rounded-md">
 
         <p className=" font-extrabold">-</p>
       </button>
@@ -85,7 +87,7 @@ export default function IncrementUnit(infos: IProps) {
             increment()
           }
         }}
-        className=" w-[33.3%] h-[100%] bg-slate-300 rounded-md border-r-2 border-gray-200">
+        className=" w-[33.3%] h-[100%] bg-slate-300 rounded-md">
 
         <p className=" font-extrabold">+</p>
       </button>

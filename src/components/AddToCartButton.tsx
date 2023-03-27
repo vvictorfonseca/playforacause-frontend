@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { IAddToCartProps, IAddToCartBody, IAddToCartButtonProps } from "@/interfaces/cartsInterface"
+import { IAddToCartBody, IAddToCartButtonProps } from "@/interfaces/cartsInterface"
 
 import { useContext } from "react"
 import UserContext, { IUserContext } from "@/contexts/userContext"
@@ -16,15 +16,15 @@ export default function AddToCartButton({ infos }: IProps) {
 
   const body: IAddToCartBody = {
     tokenStorage: userInfos.token,
-    addToCartBody: {productId: infos.productId, units: infos.units},
+    addToCartBody: { productId: infos.productId, units: infos.units },
     router: router,
     queryClient: infos.queryClient
   }
 
   function verifyUserIsLogged() {
     if (!userInfos.token) {
-      alert("Precisa estar logado para adicionar ao carrinho")
       router.push("/auth")
+
     } else {
       addToCart(body)
     }
