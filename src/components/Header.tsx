@@ -41,24 +41,24 @@ export default function Header() {
     <nav>
       <ul className=" bg-[#3c3c3c] flex items-center justify-between gap-3 h-28 font-medium text-xl text-slate-50">
 
-        <li className=" font-tittle text-3xl ml-20 hover:text-slate-200 transition">
+        <li className=" sm:text-3xl sm:ml-20 font-tittle text-xl ml-5 hover:text-slate-200 transition">
           <Link href="/" legacyBehavior>
             <a>Brechó-Fut</a>
           </Link>
         </li>
 
-        <div className="flex flex-col gap-3 justify-end mr-20 ">
-          <div className=" flex justify-between gap-8">
+        <div className="flex flex-col gap-1 sm:gap-3 justify-end mr-5 sm:mr-20">
+          <div className=" flex justify-between sm:gap-8 gap-3">
 
             {
               userInfos.token ? (
-                
-                  <li className="hover:text-slate-200 transition ">
-                    <Link href="/purchases" legacyBehavior>
+
+                <li className="hover:text-slate-200 transition ">
+                  <Link href="/purchases" legacyBehavior>
                     <AiOutlineShopping size={35} cursor={'pointer'} />
-                    </Link>
-                  </li>
-                
+                  </Link>
+                </li>
+
               ) : (
                 null
               )

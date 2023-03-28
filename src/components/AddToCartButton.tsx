@@ -31,7 +31,8 @@ export default function AddToCartButton({ infos }: IProps) {
   }
 
   return (
-    <button onClick={() => verifyUserIsLogged()} className=" w-40 h-9 bg-[#FF5A5F] rounded">
+    // <button onClick={() => verifyUserIsLogged()} className=" w-40 h-9 bg-[#FF5A5F] rounded">
+    <button onClick={() => verifyUserIsLogged()} className=" sm:w-40 sm:h-9 w-32 h-10 bg-[#FF5A5F] rounded">
       <p className=" text-white text-sm font-normal">Adicionar ao Carrinho</p>
     </button>
   )

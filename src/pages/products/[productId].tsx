@@ -46,7 +46,8 @@ export default function Product({ params }: IProductProps) {
 
   return (
 
-    <main className=" flex flex-wrap w-[50%] h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+    <main className=" flex flex-wrap w-[80%] h-[100%] sm:w-[50%] sm:h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+      {/* <main className=" flex flex-wrap w-[50%] h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"> */}
       {
         isFetching ? (
           <div className=" w-[100%] flex justify-center items-center">
@@ -55,10 +56,11 @@ export default function Product({ params }: IProductProps) {
 
         ) : (
           <>
-            <aside className=" h-[100%] w-[40%] border-r-2 border-gray-300">
+            {/* <aside className=" h-[33.3%] w-[100%] sm:h-[100%] sm:w-[40%] sm:border-r-2 border-gray-300"> */}
+            <aside className=" h-[33.3%] w-[100%] sm:h-[100%] sm:w-[40%] sm:border-r-2 border-gray-300">
               <img width={400} height={600} src={data.image} alt="Camisa"></img>
             </aside>
-            <div className=" flex flex-col h-[100%] w-[60%]">
+            <div className=" flex flex-col h-[67.7%] w-[100%] sm:h-[100%] sm:w-[60%]">
               <section className=" h-[50%] w-[100%] p-3 border-b-2 border-gray-300 ">
                 <h2 className=" text-3xl font-semibold">{data.name}</h2>
                 <h4 className=" text-sm">{data.description}</h4>
