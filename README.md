@@ -11,7 +11,7 @@ Brechó Fut é um e-commerce de venda de camisas de futebol usadas.
 - Usuários podem fazer cadastro e se logar no e-commerce.
 - Com usuário logado, é possível clicar em um produto e exibir sua descrição (nome, descrição, preço, tamanho, quantidade em estoque).
 - Com usuário logado, é possível adicionar o produto ao seu carrinho de compras.
-- Com usuário logado, é possível atualizar as quantidades do produto em seu carrinho e apagar o produto do seu carrinho.
+- Com usuário logado, é possível atualizar as quantidades do produto em seu carrinho e apagar o mesmo.
 - Com usuário logado, é possível adicionar suas informações de pagamento e endereço e finalizar a compra.
 - Com usuário logado, é possível acessar suas compras e suas respectivas informações (data, local de entrega, preço).
 
