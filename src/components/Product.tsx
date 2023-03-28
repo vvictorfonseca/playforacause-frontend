@@ -10,8 +10,8 @@ export default function Product(props: IProduct) {
     <Link href={`/products/${productId}`} legacyBehavior>
       <div className="transform h-96 bg-white w-64 transition duration-500 hover:scale-110 flex flex-col justify-center items-center cursor-pointer p-1 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
 
-        <div className=" w-[90%] h-[60%] border-b border-gray-400 ">
-          <img width={280} height={280} src={props.image} alt="camisa"></img>
+        <div className=" w-[90%] h-[60%]">
+          <img width={280} height={280} className=" rounded-md" src={props.image} alt="camisa"></img>
         </div>
 
         <div className="w-[90%] flex flex-col justify-between mt-2 gap-1 bg-slate-50 p-1 rounded-md">

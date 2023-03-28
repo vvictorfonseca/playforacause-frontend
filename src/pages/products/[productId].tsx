@@ -46,28 +46,26 @@ export default function Product({ params }: IProductProps) {
 
   return (
 
-    <main className=" flex flex-wrap w-[80%] h-[100%] sm:w-[50%] sm:h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
-      {/* <main className=" flex flex-wrap w-[50%] h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"> */}
+    <main className=" flex flex-wrap mb-9 sm:mb-0 w-[80%] h-[100%] sm:w-[50%] sm:h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       {
         isFetching ? (
-          <div className=" w-[100%] flex justify-center items-center">
+          <div className=" w-[100%] h-[60vh] sm:h-[100%] flex justify-center items-center">
             <Spin size='large' />
           </div>
 
         ) : (
           <>
-            {/* <aside className=" h-[33.3%] w-[100%] sm:h-[100%] sm:w-[40%] sm:border-r-2 border-gray-300"> */}
-            <aside className=" h-[33.3%] w-[100%] sm:h-[100%] sm:w-[40%] sm:border-r-2 border-gray-300">
-              <img width={400} height={600} src={data.image} alt="Camisa"></img>
+            <aside className="flex justify-center items-center mt-3 sm:mt-0 h-[33.3%] w-[100%] sm:h-[100%] sm:w-[40%] sm:border-r-2 border-gray-300">
+              <img width={'90%'} height={'90%'} className=" rounded-md" src={data.image} alt="Camisa"></img>
             </aside>
             <div className=" flex flex-col h-[67.7%] w-[100%] sm:h-[100%] sm:w-[60%]">
               <section className=" h-[50%] w-[100%] p-3 border-b-2 border-gray-300 ">
-                <h2 className=" text-3xl font-semibold">{data.name}</h2>
+                <h2 className=" sm:text-3xl text-xl font-semibold">{data.name}</h2>
                 <h4 className=" text-sm">{data.description}</h4>
 
-                <p className=" mt-10 font-bold text-[#FF5A5F]">{data.units} unidades no estoque</p>
+                <p className=" sm:mt-10 mt-4 font-bold text-[#FF5A5F]">{data.units} unidades no estoque</p>
               </section>
-              <article className=" flex justify-around h-[50%] border-b-2 border-gray-300">
+              <article className=" flex justify-around h-[50%]">
                 <div className=" p-3 gap-9 w-[50%] flex flex-col justify-center">
                   <div>
                     <span>Por: </span><span className=" font-bold">R${data.price},00</span>
@@ -77,7 +75,7 @@ export default function Product({ params }: IProductProps) {
                     <span>Tamanho: </span><span className=" font-bold">{data.size.toUpperCase()}</span>
                   </div>
                 </div>
-                <div className=" flex flex-col justify-center gap-6 items-center w-[50%]">
+                <div className=" flex flex-col p-4 sm:p-0 justify-center gap-6 items-center w-[50%]">
 
                   {
                     data.units == 0 ? (

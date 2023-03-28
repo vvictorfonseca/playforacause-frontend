@@ -19,7 +19,7 @@ export default function LoginForm() {
   const { userInfos, setUserInfos, } = useContext<IUserContext>(UserContext)
 
   return (
-    <div className=" w-[100%] h-[100%] flex flex-col items-center p-5 mt-[-120px] sm:mt-0">
+    <div className=" w-[100%] h-[100%] flex flex-col items-center p-5">
       <form
         className=" w-[80vw] h-[60%] sm:w-[80%] sm:h-[100%] flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-6"
         onSubmit={handleSubmit((data) => {
