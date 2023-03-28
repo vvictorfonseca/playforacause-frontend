@@ -1,3 +1,5 @@
+import { NextRouter } from "next/router";
+
 export interface ISignUp {
   email: string;
   firstName: string;
@@ -14,7 +16,7 @@ export interface ILoginProps {
   data: ILogin;
   userInfos: IUserInfo;
   setUserInfos: (newState: IUserInfo) => void;
-  router: any
+  router: NextRouter;
 }
 
 export interface IUserInfo {

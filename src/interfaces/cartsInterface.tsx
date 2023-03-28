@@ -1,3 +1,6 @@
+import { QueryClient } from "react-query";
+import { NextRouter } from "next/router";
+
 export interface IAddToCart {
   units: number | undefined;
   productId: number;
@@ -6,7 +9,7 @@ export interface IAddToCart {
 export interface IAddToCartButtonProps {
   units: number;
   productId: number;
-  queryClient: any;
+  queryClient: QueryClient;
 }
 
 export interface IAddToCartProps {
@@ -16,14 +19,14 @@ export interface IAddToCartProps {
 export interface IAddToCartBody {
   addToCartBody: IAddToCart;
   tokenStorage: string | null | undefined;
-  router: any
-  queryClient: any;
+  router: NextRouter
+  queryClient: QueryClient;
 }
 
 export interface IAddUnitToCart {
   addToCartBody: IAddToCart;
   tokenStorage: string | null | undefined;
-  queryClient: any;
+  queryClient: QueryClient;
 }
 
 export interface IUpdateUnitToCart {

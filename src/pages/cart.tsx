@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next"
-import { useRouter } from "next/router"
 import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
 
 import { Spin } from 'antd';
@@ -15,17 +14,12 @@ import NodataCart from "@/components/NodataCart"
 export default function Cart() {
   const queryClient = useQueryClient()
 
-  const router = useRouter()
-
   function invalidQuerie() {
     queryClient.invalidateQueries('carts')
   }
 
-  const { data, isFetching, isLoading } = useQuery<ICart[]>('carts', getUserCart)
+  const { data, isFetching } = useQuery<ICart[]>('carts', getUserCart)
 
-  console.log("fetching", isFetching)
-  console.log("isLoading", isLoading)
-  console.log("AllCartDara", data)
   return (
     <main className=" w-[100%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap ">
 
