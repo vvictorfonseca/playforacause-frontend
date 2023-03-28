@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
+import { useRouter } from "next/router";
 
 import { Spin } from 'antd';
 
@@ -22,6 +23,7 @@ interface IProductProps {
 export default function Product({ params }: IProductProps) {
   const [unit, setUnit] = useState<number>(1)
   const queryClient = useQueryClient()
+  const router = useRouter()
 
   const { data, isFetching } = useQuery<IProduct>('product', async () => {
 
@@ -75,9 +77,22 @@ export default function Product({ params }: IProductProps) {
                 </div>
                 <div className=" flex flex-col justify-center gap-6 items-center w-[50%]">
 
-                  <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0} isOpen={""} setIsOpen={() => null} />
+                  {
+                    data.units == 0 ? (
+                      
+                      <button onClick={() => router.push("/")} className=" w-40 h-9 bg-[#FF5A5F] rounded">
+                        <p className=" text-white text-sm font-normal">Voltar para produtos</p>
+                      </button>
+                    
+                    ) : (
+                      <>
+                        <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0} isOpen={""} setIsOpen={() => null} />
 
-                  <AddToCartButton infos={addToCartBody} />
+                        <AddToCartButton infos={addToCartBody} />
+                      </>
+                    )
+                  }
+
 
                 </div>
               </article>
