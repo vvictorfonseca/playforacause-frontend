@@ -1,38 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <p align = "center"> Brechó Fut ⚽👕 </p>
 
-## Getting Started
+##  :clipboard: Descrição
 
-First, run the development server:
+Brechó Fut é um e-commerce de venda de camisas de futebol usadas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+***
+##  :hammer: Principais Funcionalidades
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Ao abrir o site todos os produtos são exbidos ao usuário.
+- Usuários podem fazer cadastro e se logar no e-commerce.
+- Com usuário logado, é possível clicar em um produto e exibir sua descrição (nome, descrição, preço, tamanho, quantidade em estoque).
+- Com usuário logado, é possível adicionar o produto ao seu carrinho de compras.
+- Com usuário logado, é possível atualizar as quantidades do produto em seu carrinho e apagar o mesmo.
+- Com usuário logado, é possível adicionar suas informações de pagamento e endereço e finalizar a compra.
+- Com usuário logado, é possível acessar suas compras e suas respectivas informações (data, local de entrega, preço).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+***
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## :computer:	 Tecnologias e Ferramentas usadas
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- TypeScript
+- Next.js
+- React Query
+- React Hook Forms
+- TailwindCSS
+- Chakra UI
+- Ant Design
+- Chakra UI
+- localStorage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+***
