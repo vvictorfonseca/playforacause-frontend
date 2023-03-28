@@ -54,7 +54,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
   return (
     <div className=" w-[100%] flex flex-col items-center p-5 ">
       <form
-        className=" w-[80%] pt-3 pb-3 mb-7 flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
+        className=" w-[80vw] h-[75%] sm:w-[80%] sm:h-[100%] pt-3 pb-3 mb-7 flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
         onSubmit={handleSubmit((data) => {
           setCreditCardInfo(data)
           setCreditInfoComplete(true)
@@ -66,7 +66,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
         </div>
 
         <input
-          className="w-[87.2%] h-12 pl-[14px] rounded border-[1px] mt-5 border-gray-300"
+          className="w-[87.2%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] mt-5 border-gray-300"
           {...register("number", {
             required: "Esse campo é obrigatório",
           })}
@@ -80,7 +80,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
         </div>
 
         <input
-          className="w-[87.2%] h-12 pl-[14px] rounded border-[1px] mt-5 border-gray-300"
+          className="w-[87.2%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] mt-5 border-gray-300"
           {...register("name", {
             required: "Esse campo é obrigatório",
           })}
@@ -96,7 +96,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
         <div className=" w-[100%] flex justify-evenly mt-5 ">
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register("expiry", {
                 required: "Esse campo é obrigatório",
                 maxLength: {
@@ -111,7 +111,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
               type={'tel'}
               onFocus={() => setFocus('expiry')}
               onChange={handleExpiryChange}
-              placeholder="Validade xx/xx"
+              placeholder="Validade"
             />
             <div className="w-[87.2%] flex justify-start">
               <p className=" text-[#FF5A5F] text-sm">{errors.expiry?.message}</p>
@@ -120,7 +120,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
 
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register("cvc", {
                 required: "Esse campo é obrigatório",
                 maxLength: {

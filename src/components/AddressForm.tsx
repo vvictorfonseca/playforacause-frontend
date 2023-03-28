@@ -49,9 +49,9 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
   }
 
   return (
-    <div className=" w-[100%] h-[100%] flex flex-col items-center p-5 ">
+    <div className=" w-[100%] h-[100%] flex flex-col items-center p-5 mt-[-120px] sm:mt-0 ">
       <form
-        className=" w-[80%] h-[100%] flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
+        className=" w-[80vw] h-[75%] sm:w-[80%] sm:h-[100%] flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
         onSubmit={handleSubmit((data) => {
           if(creditInfoComplete) {
             createAddress(cart, data, userInfos.token, router)
@@ -68,7 +68,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
         <div className=" w-[100%] flex justify-evenly mt-5 ">
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('cep', { required: "Esse campo é obrigatório" })}
               onBlur={checkCEP}
               placeholder="CEP"
@@ -80,7 +80,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
 
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('city', {
                 required: "Esse campo é obrigatório"
               })}
@@ -95,7 +95,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
         <div className=" w-[100%] flex justify-evenly mt-5 ">
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('district', { required: "Esse campo é obrigatório" })}
               placeholder="Bairro"
             />
@@ -106,7 +106,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
 
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('street', {
                 required: "Esse campo é obrigatório", minLength: {
                   value: 4,
@@ -124,7 +124,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
         <div className=" w-[100%] flex justify-evenly mt-5 ">
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('number', { required: "Esse campo é obrigatório" })}
               placeholder="Número"
             />
@@ -135,7 +135,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
 
           <div className=" w-[40%]">
             <input
-              className="w-[100%] h-12 pl-[14px] rounded border-[1px] border-gray-300"
+              className="w-[100%] h-12 sm:pl-[14px] pl-[6px] rounded border-[1px] border-gray-300"
               {...register('complement')}
               placeholder="Complemento"
             />
@@ -143,7 +143,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
         </div>
 
         <input
-          className="w-[45%] h-12 mt-11 bg-[#FF5A5F] text-lg text-white cursor-pointer rounded border-[1px] border-gray-300"
+          className="sm:w-[45%] w-[55%] h-12 mt-11 bg-[#FF5A5F] text-lg text-white cursor-pointer rounded border-[1px] border-gray-300"
           type={'submit'}
           value={'Finalizar compra'}
         />

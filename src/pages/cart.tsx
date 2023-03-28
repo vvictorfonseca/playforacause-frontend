@@ -21,7 +21,7 @@ export default function Cart() {
   const { data, isFetching } = useQuery<ICart[]>('carts', getUserCart)
 
   return (
-    <main className=" w-[100%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap ">
+    <main className=" w-[100%] pt-5 mt-5 mb-6 flex sm:flex-row flex-col justify-center items-center gap-10 flex-wrap ">
 
       {
         isFetching ? (
@@ -40,12 +40,16 @@ export default function Cart() {
 
         ) : (
           <>
-            {data.map((product, index) => {
-              return (<CartProduct key={index} onClick={invalidQuerie} product={product} />)
-            })}
+
             <>
               <SubTotalCart cart={data} />
             </>
+
+            <div className=" sm:w-[100%] sm:flex sm:flex-col gap-9 sm:items-center sm:justify-center items-center">
+              {data.map((product, index) => {
+                return (<CartProduct key={index} onClick={invalidQuerie} product={product} />)
+              })}
+            </div>
           </>
         )
       }
