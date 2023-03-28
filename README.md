@@ -28,5 +28,6 @@ Brechó Fut é um e-commerce de venda de camisas de futebol usadas.
 - Ant Design
 - Chakra UI
 - localStorage
+- Deploy: Vercel
 
 ***
