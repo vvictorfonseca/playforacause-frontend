@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { IAddToCart, IAddToCartBody, ICart, IDeleteproductOnCart, IUpdateUnitToCart } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
-import { IAddress } from "@/interfaces/purchaseInterface";
+import { IAddress } from "@/interfaces/paymentInterface";
 
 export async function getProducts() {
 
@@ -219,5 +219,29 @@ export async function createPurchase(cart: ICart[], tokenStorage: string | undef
 
   } catch (error: any) {
     console.log(error.response.data)
+  }
+}
+
+export async function getUserPurchases() {
+  const tokenString = localStorage.getItem('token');
+  const token = tokenString !== null ? JSON.parse(tokenString) : null
+
+  if (!token) {
+    return
+  }
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const URL = "http://localhost:4000/purchase"
+
+  try {
+    const response = await axios.get(URL, config)
+    return response.data
+  } catch (error: any) {
+    console.log(error.response?.data)
   }
 }

@@ -4,7 +4,7 @@ import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
 
 import { useState } from "react"
 
-import { ICreditCard } from "@/interfaces/purchaseInterface"
+import { ICreditCard } from "@/interfaces/paymentInterface"
 import { ICart } from "@/interfaces/cartsInterface"
 
 import { getUserCart } from "@/services/api"
@@ -12,12 +12,11 @@ import { getUserCart } from "@/services/api"
 import CreditCardForm from "@/components/CredidCardForm"
 import AddresForm from "@/components/AddressForm"
 
-export default function Purchase() {
+export default function Payment() {
   const { data } = useQuery<ICart[]>('carts', getUserCart)
 
   const [creditInfoComplete, setCreditInfoComplete] = useState<boolean>(false)
   const [creditCardInfo, setCreditCardInfo] = useState<ICreditCard>()
-  console.log("creditcard", creditCardInfo)
 
   if(!data) return
 

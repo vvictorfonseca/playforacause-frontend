@@ -3,7 +3,7 @@ import "react-credit-cards/es/styles-compiled.css";
 
 import { useForm } from 'react-hook-form';
 
-import { ICreditCard } from '@/interfaces/purchaseInterface';
+import { ICreditCard } from '@/interfaces/paymentInterface';
 
 interface IProps {
   setCreditCardInfo: (newState: ICreditCard) => void;

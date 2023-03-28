@@ -29,9 +29,9 @@ export default function CartProduct({ product, onClick }: ICartProduct) {
 
   return (
 
-    <div className=" flex items-center w-[50%] h-44 bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] ">
+    <div className=" flex items-center w-[50%] h-[139px] bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] ">
       <div className=" w-[23%] h-[100%] border-r-2 border-gray-200">
-        <p>{image}</p>
+        <img width={150} height={150} src={image} alt="Camisa"></img>
       </div>
       <div className=" flex flex-col justify-between  w-[55%] h-[100%] border-r[1px] p-3 border-r-2 border-gray-200">
         <div>

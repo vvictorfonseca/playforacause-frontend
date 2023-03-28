@@ -4,7 +4,7 @@ import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
 
 import { GetStaticProps, GetStaticPaths } from "next"
 import { IProduct } from "@/interfaces/productsInterface"
-import { IAddToCart, IAddToCartButtonProps } from "@/interfaces/cartsInterface"
+import { IAddToCartButtonProps } from "@/interfaces/cartsInterface"
 
 import { getProducts } from "@/services/api"
 
@@ -32,8 +32,8 @@ export default function Product({ params }: IProductProps) {
     }
   })
 
-  if(!data) return <p>No data</p>
-  if(isLoading) return <p>Loading</p>
+  if (!data) return 
+  if (isLoading) return <p>Loading</p>
 
   let addToCartBody: IAddToCartButtonProps = {
     units: unit,
@@ -42,33 +42,35 @@ export default function Product({ params }: IProductProps) {
   }
 
   return (
-    <main className=" flex flex-wrap w-[50%] h-[70vh] bg-white mt-10 rounded-xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+    <main className=" flex flex-wrap w-[50%] h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       <aside className=" h-[100%] w-[40%] border-r-2 border-gray-300">
-
+        <img width={400} height={600} src={data.image} alt="Camisa"></img>
       </aside>
       <div className=" flex flex-col h-[100%] w-[60%]">
-        <section className=" h-[33.5%] w-[100%] p-3 border-b-2 border-gray-300 ">
+        <section className=" h-[50%] w-[100%] p-3 border-b-2 border-gray-300 ">
           <h2 className=" text-3xl font-semibold">{data.name}</h2>
           <h4 className=" text-sm">{data.description}</h4>
 
           <p className=" mt-10 font-bold text-[#FF5A5F]">{data.units} unidades no estoque</p>
         </section>
-        <article className=" flex flex-col justify-around h-[33.5%] p-5 border-b-2 border-gray-300">
-          <div>
-            <span>Por: </span><span className=" font-bold">R${data.price},00</span>
-          </div>
+        <article className=" flex justify-around h-[50%] border-b-2 border-gray-300">
+          <div className=" p-3 gap-9 w-[50%] flex flex-col justify-center">
+            <div>
+              <span>Por: </span><span className=" font-bold">R${data.price},00</span>
+            </div>
 
-          <div>
-            <span>Tamanho: </span><span className=" font-bold">{data.size.toUpperCase()}</span>
+            <div>
+              <span>Tamanho: </span><span className=" font-bold">{data.size.toUpperCase()}</span>
+            </div>
           </div>
-        </article>
-        <div className=" flex flex-col justify-center gap-6 items-center h-[33%] w-[100%]">
-          
-          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0} isOpen={""} setIsOpen={() => null}  />
+          <div className=" flex flex-col justify-center gap-6 items-center w-[50%]">
+
+          <IncrementUnit unit={unit} setUnit={setUnit} productUnits={data.units} isCart={false} productId={0} cartId={0} isOpen={""} setIsOpen={() => null} />
 
           <AddToCartButton infos={addToCartBody} />
-        
-        </div>
+
+          </div>
+        </article>
       </div>
     </main>
   )
