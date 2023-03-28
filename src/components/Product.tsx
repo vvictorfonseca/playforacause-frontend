@@ -15,7 +15,7 @@ export default function Product(props: IProduct) {
       </div>
 
       <div className="w-[90%] flex flex-col justify-between mt-2 gap-1 bg-slate-50 p-1 rounded-md">
-        <h2 className=" text-xl">{props.name}</h2>
+        <h2 className=" text-lg">{props.name}</h2>
         <h3 className="text-xs font-bold">R$ {props.price},00</h3>
       </div>
 

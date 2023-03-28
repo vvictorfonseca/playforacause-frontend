@@ -24,7 +24,7 @@ export default function Product({ params }: IProductProps) {
   const { data, isLoading } = useQuery<IProduct>('product', async () => {
 
     try {
-      const res = await axios.get(`http://localhost:4000/product/${params.productId}`)
+      const res = await axios.get(`https://api-playforacause.onrender.com/product/${params.productId}`)
       return res.data
 
     } catch (error) {
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   if (params) {
     await queryClient.prefetchQuery<IProduct>('products', async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/product/${params.productId}`)
+        const res = await axios.get(`https://api-playforacause.onrender.com/product/${params.productId}`)
         return res.data
 
       } catch (error) {

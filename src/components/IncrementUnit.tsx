@@ -34,7 +34,7 @@ export default function IncrementUnit(infos: IProps) {
   }
 
   function increment() {
-    infos.unit < infos.productUnits ? infos.setUnit(infos.unit + 1) : alert("Não temos mais que isso em nosso estoque")
+    infos.unit < infos.productUnits ? infos.setUnit(infos.unit + 1) : null
   }
 
   function decrement() {

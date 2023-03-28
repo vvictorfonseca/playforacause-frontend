@@ -6,7 +6,7 @@ import { IAddress } from "@/interfaces/paymentInterface";
 
 export async function getProducts() {
 
-  const URL = "http://localhost:4000/products"
+  const URL = "https://api-playforacause.onrender.com/products"
 
   try {
     const res = await axios.get(URL)
@@ -26,7 +26,7 @@ export async function signUp(props: ISignUp) {
     password: props.password
   }
 
-  const URL = "http://localhost:4000/user"
+  const URL = "https://api-playforacause.onrender.com/user"
 
   try {
     await axios.post(URL, body)
@@ -44,7 +44,7 @@ export async function login(props: ILoginProps) {
     password: props.data.password
   }
 
-  const URL = "http://localhost:4000/user/login"
+  const URL = "https://api-playforacause.onrender.com/user/login"
 
   try {
     const response = await axios.post(URL, body)
@@ -83,7 +83,7 @@ export async function addToCart({ tokenStorage, addToCartBody, router, queryClie
     }
   }
 
-  const URL = "http://localhost:4000/cart"
+  const URL = "https://api-playforacause.onrender.com/cart"
 
   try {
     await axios.post(URL, body, config)
@@ -104,7 +104,7 @@ export async function incrementUnitToCart({ cartId, tokenStorage, queryClient }:
     }
   }
 
-  const URL = `http://localhost:4000/cart/increment/${cartId}`
+  const URL = `https://api-playforacause.onrender.com/cart/increment/${cartId}`
 
   try {
     await axios.put(URL, {}, config)
@@ -123,7 +123,7 @@ export async function decrementUnitToCart({ cartId, tokenStorage, queryClient }:
     }
   }
 
-  const URL = `http://localhost:4000/cart/decrement/${cartId}`
+  const URL = `https://api-playforacause.onrender.com/cart/decrement/${cartId}`
 
   try {
     await axios.put(URL, {}, config)
@@ -148,7 +148,7 @@ export async function getUserCart() {
     }
   }
 
-  const URL = "http://localhost:4000/cart"
+  const URL = "https://api-playforacause.onrender.com/cart"
 
   try {
     const response = await axios.get(URL, config)
@@ -167,7 +167,7 @@ export async function deleteProductOnCart(props: IDeleteproductOnCart) {
     }
   }
 
-  const URL = `http://localhost:4000/cart/${props.cartId}`
+  const URL = `https://api-playforacause.onrender.com/cart/${props.cartId}`
 
   try {
     await axios.delete(URL, config)
@@ -186,7 +186,7 @@ export async function createAddress(cart: ICart[], addressInfo: IAddress, tokenS
     }
   }
 
-  const URL = "http://localhost:4000/address"
+  const URL = "https://api-playforacause.onrender.com/address"
 
   try {
     await axios.post(URL, addressInfo, config)
@@ -208,7 +208,7 @@ export async function createPurchase(cart: ICart[], tokenStorage: string | undef
     }
   }
 
-  const URL = "http://localhost:4000/purchase"
+  const URL = "https://api-playforacause.onrender.com/purchase"
 
   try {
     await axios.post(URL, cart, config)
@@ -236,7 +236,7 @@ export async function getUserPurchases() {
     }
   }
 
-  const URL = "http://localhost:4000/purchase"
+  const URL = "https://api-playforacause.onrender.com/purchase"
 
   try {
     const response = await axios.get(URL, config)
