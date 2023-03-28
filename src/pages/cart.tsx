@@ -2,6 +2,8 @@ import { GetStaticProps } from "next"
 import { useRouter } from "next/router"
 import { dehydrate, QueryClient, useQuery, useQueryClient } from "react-query"
 
+import { Spin } from 'antd';
+
 import { ICart } from "@/interfaces/cartsInterface"
 
 import { getUserCart } from "@/services/api"
@@ -19,23 +21,30 @@ export default function Cart() {
     queryClient.invalidateQueries('carts')
   }
 
-  const { data } = useQuery<ICart[]>('carts', getUserCart)
+  const { data, isFetching, isLoading } = useQuery<ICart[]>('carts', getUserCart)
 
-  if (!data) return (
-    <NodataCart content={"Precisa estar logado para acessar seu carrinho!"} />
-  )
-
+  console.log("fetching", isFetching)
+  console.log("isLoading", isLoading)
   console.log("AllCartDara", data)
   return (
     <main className=" w-[100%] pt-5 mt-5 mb-6 flex justify-center gap-10 flex-wrap ">
 
       {
-        data.length == 0 ? (
-          
+        isFetching ? (
+
+          <div className=" w-[100%] h-[50vh] flex justify-center items-center">
+            <Spin size='large' />
+          </div>
+
+        ) : !data ? (
+
+          <NodataCart content={"Precisa estar logado para acessar seu carrinho!"} />
+
+        ) : data.length == 0 ? (
+
           <NodataCart content="Seu carrinho está vazio!" />
 
         ) : (
-
           <>
             {data.map((product, index) => {
               return (<CartProduct key={index} onClick={invalidQuerie} product={product} />)
@@ -44,7 +53,8 @@ export default function Cart() {
               <SubTotalCart cart={data} />
             </>
           </>
-        )}
+        )
+      }
 
     </main>
   )

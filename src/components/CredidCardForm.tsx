@@ -1,6 +1,3 @@
-import Card from 'react-credit-cards'
-import "react-credit-cards/es/styles-compiled.css";
-
 import { useForm } from 'react-hook-form';
 
 import { ICreditCard } from '@/interfaces/paymentInterface';
@@ -42,17 +39,17 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
         })}
       >
 
-        <div className="w-[87.2%] flex justify-start mt-5 mb-7">
+        <div className="w-[87.2%] flex justify-start mt-5">
           <h1 className=" text-3xl font-bold">Pagamento</h1>
         </div>
 
-        <Card
+        {/* <Card
           name={name}
           number={number}
           expiry={expiry}
           cvc={cvc}
           focused={watch('cvc') ? 'cvc' : watch('number') ? 'number' : undefined}
-        />
+        /> */}
 
         <input
           className="w-[87.2%] h-12 pl-[14px] rounded border-[1px] mt-5 border-gray-300"
