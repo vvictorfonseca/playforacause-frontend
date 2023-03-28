@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditInfoComplete }: IProps) {
-  const { register, handleSubmit, watch, setFocus, resetField, formState: { errors } } = useForm({
+  const { register, handleSubmit, watch, setFocus, resetField, formState: { errors }, setValue } = useForm({
     defaultValues: {
       number: "",
       name: "",
@@ -23,10 +23,33 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
   const twoDivides = subTotal / 2;
   const threeDivides = subTotal / 3;
 
-  const name = watch('name')
-  const number = watch('number')
-  const expiry = watch('expiry')
-  const cvc = watch('cvc')
+  function handleCardNumberInput(event: any) {
+    const { value } = event.target;
+    if(value.length == 19) {
+      setFocus('name')
+    }
+    const formattedValue = value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ');
+    setValue('number', formattedValue);
+  }
+
+  function handleNameInput(event: any) {
+    const value = event.target.value.toUpperCase();
+    setValue('name', value);
+  };
+
+  function formatExpiryDate(value: string) {
+    let formattedValue = value.replace(/\D/g, ''); // Remove tudo que não for dígito
+    if (formattedValue.length > 2) {
+      formattedValue = formattedValue.slice(0, 2) + '/' + formattedValue.slice(2);
+    }
+    return formattedValue;
+  }
+
+  function handleExpiryChange(event: any) {
+    const { value } = event.target;
+    const formattedValue = formatExpiryDate(value);
+    setValue('expiry', formattedValue);
+  }
 
   return (
     <div className=" w-[100%] flex flex-col items-center p-5 ">
@@ -35,7 +58,6 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
         onSubmit={handleSubmit((data) => {
           setCreditCardInfo(data)
           setCreditInfoComplete(true)
-          resetField('cvc')
         })}
       >
 
@@ -43,29 +65,14 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
           <h1 className=" text-3xl font-bold">Pagamento</h1>
         </div>
 
-        {/* <Card
-          name={name}
-          number={number}
-          expiry={expiry}
-          cvc={cvc}
-          focused={watch('cvc') ? 'cvc' : watch('number') ? 'number' : undefined}
-        /> */}
-
         <input
           className="w-[87.2%] h-12 pl-[14px] rounded border-[1px] mt-5 border-gray-300"
           {...register("number", {
             required: "Esse campo é obrigatório",
-            minLength: {
-              value: 16,
-              message: "16 dígitos"
-            },
-            maxLength: {
-              value: 16,
-              message: "16 dígitos"
-            }
           })}
           type={'tel'}
           onFocus={() => setFocus('number')}
+          onChange={handleCardNumberInput}
           placeholder="Número do Cartão"
         />
         <div className="w-[87.2%] flex justify-start">
@@ -79,6 +86,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
           })}
           type={'text'}
           onFocus={() => setFocus('name')}
+          onChange={handleNameInput}
           placeholder="Nome"
         />
         <div className="w-[87.2%] flex justify-start">
@@ -92,17 +100,18 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
               {...register("expiry", {
                 required: "Esse campo é obrigatório",
                 maxLength: {
-                  value: 4,
-                  message: "4 dígitps"
+                  value: 5,
+                  message: "4 dígitos"
                 },
                 minLength: {
-                  value: 4,
+                  value: 5,
                   message: "4 dígitos"
                 }
               })}
               type={'tel'}
               onFocus={() => setFocus('expiry')}
-              placeholder="Validade"
+              onChange={handleExpiryChange}
+              placeholder="Validade xx/xx"
             />
             <div className="w-[87.2%] flex justify-start">
               <p className=" text-[#FF5A5F] text-sm">{errors.expiry?.message}</p>
