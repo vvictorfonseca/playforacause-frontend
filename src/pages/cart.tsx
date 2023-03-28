@@ -53,9 +53,7 @@ export default function Cart() {
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery<ICart[]>('carts', getUserCart, {
-    staleTime: 200
-  })
+  await queryClient.prefetchQuery<ICart[]>('carts', getUserCart)
 
   return {
     props: {

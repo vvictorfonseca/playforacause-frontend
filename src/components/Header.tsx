@@ -1,17 +1,22 @@
 import Link from "next/link";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 
 import UserContext, { IUserContext } from "@/contexts/userContext";
 
-import { AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai'
+import { IUserInfo } from "@/interfaces/authInterface";
+
+import { AiOutlineShoppingCart, AiOutlineUser, AiOutlineShopping } from 'react-icons/ai'
 import { BiLogOut } from 'react-icons/bi'
 import ModalComponent from "./Modal";
 
 export default function Header() {
   const { userInfos, setUserInfos } = useContext<IUserContext>(UserContext)
-  console.log(userInfos.token)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const setUserInfosCallback = useCallback((data: IUserInfo) => {
+    setUserInfos(data);
+  }, [setUserInfos]);
 
   useEffect(() => {
 
@@ -24,13 +29,13 @@ export default function Header() {
     const tokenString = localStorage.getItem('token');
     const token = tokenString !== null ? JSON.parse(tokenString) : null
 
-    setUserInfos({
+    setUserInfosCallback({
       id: userId,
       firstName: firstName,
       token: token
     })
 
-  }, [])
+  }, [setUserInfosCallback])
 
   return (
     <nav>
@@ -42,8 +47,23 @@ export default function Header() {
           </Link>
         </li>
 
-        <div className="flex flex-col gap-2 justify-end mr-20 w-32 ">
-          <div className=" flex justify-around">
+        <div className="flex flex-col gap-3 justify-end mr-20 ">
+          <div className=" flex justify-between gap-8">
+
+            {
+              userInfos.token ? (
+                
+                  <li className="hover:text-slate-200 transition ">
+                    <Link href="/purchases" legacyBehavior>
+                    <AiOutlineShopping size={35} cursor={'pointer'} />
+                    </Link>
+                  </li>
+                
+              ) : (
+                null
+              )
+            }
+
             <li className="hover:text-slate-200 transition">
               <Link href="/cart" legacyBehavior>
                 <AiOutlineShoppingCart size={35} cursor={'pointer'} />
@@ -69,14 +89,14 @@ export default function Header() {
               }
             </li>
           </div>
-        
+
           {
-          userInfos.firstName !== null ? (
-            <p className=" text-white text-xs text-center ">Bem vindo, {userInfos.firstName}</p>
-          ) : (
-            null
-          )
-        }
+            userInfos.firstName !== null ? (
+              <p className=" text-white text-xs text-center ">Bem vindo, {userInfos.firstName}</p>
+            ) : (
+              null
+            )
+          }
         </div>
 
       </ul >

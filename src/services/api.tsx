@@ -1,14 +1,8 @@
 import axios from "axios";
 
-import { IAddToCart, IAddToCartBody, IAddUnitToCart, IDeleteproductOnCart, IUpdateUnitToCart } from "@/interfaces/cartsInterface";
+import { IAddToCart, IAddToCartBody, ICart, IDeleteproductOnCart, IUpdateUnitToCart } from "@/interfaces/cartsInterface";
 import { ISignUp, ILogin, ILoginProps } from "@/interfaces/authInterface";
-
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from '@chakra-ui/react'
+import { IAddress } from "@/interfaces/purchaseInterface";
 
 export async function getProducts() {
 
@@ -17,14 +11,14 @@ export async function getProducts() {
   try {
     const res = await axios.get(URL)
     return res.data
-  
+
   } catch (error) {
     alert(error)
   }
 }
 
 export async function signUp(props: ISignUp) {
-  
+
   const body: ISignUp = {
     email: props.email,
     firstName: props.firstName,
@@ -37,14 +31,14 @@ export async function signUp(props: ISignUp) {
   try {
     await axios.post(URL, body)
     alert("Usuário Cadastrado com sucesso")
-  
+
   } catch (error: any) {
     alert(error.response.data)
   }
 }
 
 export async function login(props: ILoginProps) {
-  
+
   const body: ILogin = {
     email: props.data.email,
     password: props.data.password
@@ -70,14 +64,14 @@ export async function login(props: ILoginProps) {
     })
 
     props.router.push("/")
-  
+
   } catch (error: any) {
     alert(error.response.data)
-  } 
+  }
 }
 
 export async function addToCart({ tokenStorage, addToCartBody, router, queryClient }: IAddToCartBody) {
-  
+
   const body: IAddToCart = {
     productId: addToCartBody.productId,
     units: addToCartBody.units
@@ -94,16 +88,16 @@ export async function addToCart({ tokenStorage, addToCartBody, router, queryClie
   try {
     await axios.post(URL, body, config)
     queryClient
-    
+
     router.push("/cart")
-  
+
   } catch (error: any) {
     alert(error.response.data)
   }
 }
 
-export async function incrementUnitToCart({ cartId, tokenStorage, queryClient}: IUpdateUnitToCart) {
-  
+export async function incrementUnitToCart({ cartId, tokenStorage, queryClient }: IUpdateUnitToCart) {
+
   const config = {
     headers: {
       Authorization: `Bearer ${tokenStorage}`
@@ -115,14 +109,14 @@ export async function incrementUnitToCart({ cartId, tokenStorage, queryClient}: 
   try {
     await axios.put(URL, {}, config)
     queryClient()
-    
+
   } catch (error: any) {
     alert(error.response.data)
   }
 }
 
-export async function decrementUnitToCart({ cartId, tokenStorage, queryClient}: IUpdateUnitToCart) {
-  
+export async function decrementUnitToCart({ cartId, tokenStorage, queryClient }: IUpdateUnitToCart) {
+
   const config = {
     headers: {
       Authorization: `Bearer ${tokenStorage}`
@@ -144,7 +138,7 @@ export async function getUserCart() {
   const tokenString = localStorage.getItem('token');
   const token = tokenString !== null ? JSON.parse(tokenString) : null
 
-  if(!token) {
+  if (!token) {
     return
   }
 
@@ -159,7 +153,7 @@ export async function getUserCart() {
   try {
     const response = await axios.get(URL, config)
     return response.data
-  
+
   } catch (error: any) {
     alert(error.response.data)
   }
@@ -172,17 +166,58 @@ export async function deleteProductOnCart(props: IDeleteproductOnCart) {
       Authorization: `Bearer ${props.token}`
     }
   }
-  
-  const URL = `http://localhost:4000/cart/${props.cartId}`
 
-  console.log("onclick", props.onClick)
-  console.log("productId", props.cartId)
+  const URL = `http://localhost:4000/cart/${props.cartId}`
 
   try {
     await axios.delete(URL, config)
     props.onClick()
-  
+
   } catch (error: any) {
     alert(error.response.data)
+  }
+}
+
+export async function createAddress(cart: ICart[], addressInfo: IAddress, tokenStorage: string | undefined | null, router: any) {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`
+    }
+  }
+
+  const URL = "http://localhost:4000/address"
+
+  try {
+    await axios.post(URL, addressInfo, config)
+    console.log("deu bom no endereço")
+
+    await createPurchase(cart, tokenStorage, router)
+
+  } catch (error: any) {
+    console.log(error.response.data)
+  }
+
+}
+
+export async function createPurchase(cart: ICart[], tokenStorage: string | undefined | null, router: any) {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`
+    }
+  }
+
+  const URL = "http://localhost:4000/purchase"
+
+  try {
+    await axios.post(URL, cart, config)
+
+    alert("Compra efetuada com sucesso")
+
+    router.push("/")
+
+  } catch (error: any) {
+    console.log(error.response.data)
   }
 }
