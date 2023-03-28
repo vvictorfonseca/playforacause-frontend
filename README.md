@@ -17,7 +17,7 @@ Brechó Fut é um e-commerce de venda de camisas de futebol usadas.
 
 ***
 
-## :computer:	 Tecnologias e Ferramentas usadas
+## :computer:	 Tecnologias e Ferramentas usadas no front-end
 
 - TypeScript
 - Next.js
@@ -28,5 +28,6 @@ Brechó Fut é um e-commerce de venda de camisas de futebol usadas.
 - Ant Design
 - Chakra UI
 - localStorage
+- Deploy: Vercel
 
 ***
