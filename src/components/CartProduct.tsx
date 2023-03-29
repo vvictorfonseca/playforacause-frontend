@@ -33,7 +33,7 @@ export default function CartProduct({ product, onClick }: ICartProduct) {
       <div className=" w-[70%] h-[100%] mt-2 sm:mt-0 sm:w-[23%] sm:h-[100%] sm:border-r-2 sm:border-gray-200">
         <img className=" rounded-md sm:rounded-none" width={'100%'} height={'60%'} src={image} alt="Camisa"></img>
       </div>
-      <div className=" flex flex-col justify-between gap-6 p-1 w-[65%] h-[100%] sm:w-[55%] sm:h-[100%] sm:border-r[1px] sm:border-r-2 sm:p-3 sm:border-gray-200 ">
+      <div className=" flex flex-col justify-between gap-6 p-1 w-[65%] h-[100%] border-b-[1px] border-gray-200 sm:border-b-0 sm:w-[55%] sm:h-[100%] sm:border-r[1px] sm:border-r-2 sm:p-3 sm:border-gray-200 ">
         <div className=" gap-4 sm:gap-0">
           <h2 className=" text-xl sm:text-2xl font-semibold">{name}</h2>
           <h3>{description}</h3>
@@ -43,7 +43,7 @@ export default function CartProduct({ product, onClick }: ICartProduct) {
           <span>Tamanho: <span className=" font-bold">{size.toUpperCase()}</span></span>
         </div>
       </div>
-      <div className=" w-[70%] sm:w-[32%] mt-7 sm:mt-0 h-[100%] flex flex-col sm:relative justify-center gap-4 items-center">
+      <div className=" w-[70%] sm:w-[32%] mt-5 sm:mt-0 h-[100%] flex flex-col sm:relative justify-center gap-4 items-center">
         <h2 className=" sm:font-semibold font-bold">R$ {price},00</h2>
 
         <IncrementUnit unit={product.units} setUnit={() => null} productUnits={units} isCart={true} productId={id} cartId={product.id} isOpen={isOpen} setIsOpen={setIsOpen} />

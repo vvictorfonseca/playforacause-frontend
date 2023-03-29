@@ -51,7 +51,7 @@ export default function AddresForm({ cart, creditInfoComplete }: IProps) {
   return (
     <div className=" w-[100%] h-[100%] flex flex-col items-center p-5">
       <form
-        className=" w-[80vw] h-[75%] sm:w-[80%] sm:h-[100%] flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
+        className=" w-[80vw] sm:w-[80%] h-[100%] flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
         onSubmit={handleSubmit((data) => {
           if(creditInfoComplete) {
             createAddress(cart, data, userInfos.token, router)

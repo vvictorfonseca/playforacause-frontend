@@ -42,7 +42,7 @@ export default function IncrementUnit(infos: IProps) {
   }
 
   return (
-    <div className=" flex justify-between items-center w-32 h-9 rounded-md bg-slate-200 border-[1px] border-gray-200 ">
+    <div className=" flex justify-between items-center sm:w-32 w-28 h-9 rounded-md bg-slate-200 border-[1px] border-gray-200 ">
 
       <button
         onClick={() => {

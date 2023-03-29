@@ -80,8 +80,8 @@ export default function Product({ params }: IProductProps) {
                   {
                     data.units == 0 ? (
                       
-                      <button onClick={() => router.push("/")} className=" w-40 h-9 bg-[#FF5A5F] rounded">
-                        <p className=" text-white text-sm font-normal">Voltar para produtos</p>
+                      <button onClick={() => router.push("/")} className=" sm:w-40 w-28 sm:h-9 h-10 p-1 bg-[#FF5A5F] rounded">
+                        <p className=" text-white sm:text-sm text-xs font-normal">Voltar para produtos</p>
                       </button>
                     
                     ) : (
