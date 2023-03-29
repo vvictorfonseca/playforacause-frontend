@@ -81,8 +81,7 @@ export default function IncrementUnit(infos: IProps) {
               incrementUnitToCart(updateCartBody)
 
             } else {
-
-              alert("não temos mais esse produto em estoque")
+              alert(`Não temos mais de ${infos.productUnits} ${infos.productUnits == 1? "unidade" : "unidades"} deste produto em estoque!`)
             }
 
           } else {
