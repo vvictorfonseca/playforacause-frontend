@@ -100,7 +100,13 @@ export default function Product({ params }: IProductProps) {
           </>
         )
       }
-      <BackToProductsButton />
+      {
+        data.units > 0 ? (
+          <BackToProductsButton />
+        ) : (
+          null
+        )
+      }
     </main>
   )
 }
