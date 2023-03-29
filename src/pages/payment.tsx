@@ -28,10 +28,10 @@ export default function Payment() {
   
   return (
     <div className=" w-[100vw] flex flex-col sm:flex-row justify-center items-center">
-      <div className=" w-[50%] h-[82vh]">
+      <div className=" w-[50%] sm:h-[82vh] h-[100%]">
         <CreditCardForm setCreditCardInfo={setCreditCardInfo} subTotal={subTotal} setCreditInfoComplete={setCreditInfoComplete} />
       </div>
-      <div className=" w-[50%] h-[82vh]">
+      <div className=" w-[50%] sm:h-[82vh] h-[100%]">
         <AddresForm cart={data} creditInfoComplete={creditInfoComplete} />
       </div>
     </div>

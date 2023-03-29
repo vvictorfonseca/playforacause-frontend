@@ -54,7 +54,7 @@ export default function CreditCardForm({ setCreditCardInfo, subTotal, setCreditI
   return (
     <div className=" w-[100%] flex flex-col items-center p-5 ">
       <form
-        className=" w-[80vw] sm:w-[80%] sm:h-[100%] h-[500px] pt-3 pb-3 mb-7 flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
+        className=" w-[80vw] sm:w-[80%] sm:h-[76vh] h-[500px] pt-3 pb-3 mb-7 flex flex-col items-center bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] gap-1"
         onSubmit={handleSubmit((data) => {
           setCreditCardInfo(data)
           setCreditInfoComplete(true)
