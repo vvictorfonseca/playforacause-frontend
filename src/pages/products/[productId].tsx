@@ -13,6 +13,7 @@ import { getProducts } from "@/services/api"
 
 import IncrementUnit from "@/components/IncrementUnit"
 import AddToCartButton from "@/components/AddToCartButton"
+import BackToProductsButton from "@/components/BackToProductsButton";
 
 interface IProductProps {
   params: {
@@ -45,7 +46,6 @@ export default function Product({ params }: IProductProps) {
   }
 
   return (
-
     <main className=" flex flex-wrap mb-9 sm:mb-0 w-[80%] h-[100%] sm:w-[50%] sm:h-[43.5vh] bg-white mt-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
       {
         isFetching ? (
@@ -100,6 +100,7 @@ export default function Product({ params }: IProductProps) {
           </>
         )
       }
+      <BackToProductsButton />
     </main>
   )
 }

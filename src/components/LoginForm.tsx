@@ -54,6 +54,7 @@ export default function LoginForm() {
         <input
           className="w-[45%] h-12 mt-11 bg-[#FF5A5F] text-lg text-white cursor-pointer rounded border-[1px] border-gray-300"
           type={'submit'}
+          value={'Logar'}
         />
 
       </form>
